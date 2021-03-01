@@ -17,9 +17,9 @@ public class simulator
 	    String line = reader.readLine();
 	    while (line != null) 
             {
-				PC=PC+4;
-				System.out.println(line);
-				line = reader.readLine();
+		PC=PC+4;
+		System.out.println(line);
+		line = reader.readLine();
 	    }
 	   System.out.println();
 	   reader.close();
