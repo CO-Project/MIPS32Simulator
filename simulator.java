@@ -39,7 +39,6 @@ public class simulator
 	 }
     	  catch (FileNotFoundException e) 
     	  {
-		
 		e.printStackTrace();
            }
       }
