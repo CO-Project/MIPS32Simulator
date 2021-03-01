@@ -42,4 +42,7 @@ public class simulator
 		e.printStackTrace();
            }
       }
+      /* the whole parsing and instruction implementation is done here!!*/
+      /*Registers and memory is updated*/
+      /* Display reults on console */
 }
