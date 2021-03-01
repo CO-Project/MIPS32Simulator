@@ -2,7 +2,7 @@ package co_project;
 import java.io.*;
 import java.util.*;
 import java.util.*;
-
+import javax.*;
 import javax.swing.JFileChooser;
 public class simulator 
 {
