@@ -8,9 +8,17 @@ public class simulator
 {
    public static void main(String[] args) 
    {
-	int R[]=new int[32];
+       int R[]=new int[32];
        int Mem[]=new int[1024];
        int PC=0;
+       for(int i=0;i<32;i++)
+       {
+	   R[i]=0;
+       }
+       for(int i=0;i<1024;i++)
+       {
+	   Mem[i]=0;
+       }
        File file ;
       Scanner fileIn;
       int response;
