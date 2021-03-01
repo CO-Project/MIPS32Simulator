@@ -53,4 +53,6 @@ public class simulator
       /* the whole parsing and instruction implementation is done here!!*/
       /*Registers and memory is updated*/
       /* Display reults on console */
+      Gui gui= new Gui(R,Mem,32,1024);
+     gui.display(R,Mem,32,1024);
 }
