@@ -9,7 +9,7 @@ public class simulator
 	int R[]=new int[32];
        int Mem[]=new int[1024];
        int PC=0;
-       File file = new File("./cs19b010.asm");
+       File file = new File("./cs19b010_11.asm");
        BufferedReader reader;
        try 
        {
