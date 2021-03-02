@@ -1,10 +1,17 @@
 package co_project;
-public class Gui {
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-	JFrame frame;
+import javax.swing.*;
+
+public class Gui {
+   JFrame frame;
 	private JTextField textField_0;
 	private JButton btnNewButton_2;
-	public void display(int R[],int Mem[],int n,int m) 
+	private JTextField textField;
+	
+	public static void display(int R[],int Mem[],int n,int m) 
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
@@ -38,7 +45,7 @@ public class Gui {
 		
 		btnNewButton.setBackground(new Color(245, 222, 179));
 		btnNewButton.setForeground(new Color(128, 0, 0));
-		btnNewButton.setBounds(373, 41, 121, 23);
+		btnNewButton.setBounds(16, 859, 121, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Data Segment");
@@ -46,6 +53,7 @@ public class Gui {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				
 				for(int i=0;i<1024;i++)
 				{
 					int rem=i%50;
@@ -63,38 +71,47 @@ public class Gui {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_1.setBackground(new Color(135, 206, 235));
 		btnNewButton_1.setForeground(new Color(139, 0, 0));
-		btnNewButton_1.setBounds(698, 42, 127, 23);
+		btnNewButton_1.setBounds(10, 62, 127, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("Console");
 		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
+
+				textField = new JTextField();
+				textField.setBounds(182, 11, 1684, 51);
+				frame.getContentPane().add(textField);
+				textField.setColumns(10);
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_2.setBounds(1072, 42, 97, 23);
+		btnNewButton_2.setBounds(26, 28, 97, 23);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		
 		btnNewButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				
-					for(int i=0;i<32;i++)
-					{
-						int rem=i%8;
-						int div=i/8;
-						int h=200+div*420;
-						int d=100+rem*40;
-						 textField_0 = new JTextField();
-						textField_0.setBounds(h, d, 95, 25);
-						frame.getContentPane().add(textField_0);
-						textField_0.setColumns(20);
-						textField_0.setText("R["+i+"]"+" = "+Integer.toString(R[i]));
-					}
-             }
+
+				 for(int i=0;i<32;i++)
+				 {
+					 int h,d;
+				 if(i%2==0)
+						 d=902;
+					 else
+						 d=951;
+					h=23+(i/2)*118;
+					textField_0 = new JTextField();
+					textField_0.setBounds(h, d, 95, 20);
+					frame.getContentPane().add(textField_0);
+					textField_0.setColumns(10);
+					textField_0.setText("R["+(i+1)+"]"+" = "+Integer.toString(R[i]));
+				 }
+		}
 		});
-		frame.setBounds(100, 100, 1920, 1000);
+		frame.setBounds(100, 100, 1928, 1047);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
-
