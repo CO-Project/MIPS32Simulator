@@ -2,6 +2,8 @@
 ## How it works?
 Our MIPS32 Simulator when run, displays a graphical user interface to upload an assembly file present anywhere in your computer and executes it. It displays the values stored in the registers and in the data segment after the execution of the file on a GUI. Also it displays the values of the registers after executing each step on the console.
 
+The file bubblesort.asm is an assembly file which performs bubblesort on the given data and it is written based on our architecture.
+
 ## Instructions Implemented :
 Our simulator can run the following instructions:
 1. add
