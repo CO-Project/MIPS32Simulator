@@ -1,9 +1,6 @@
 package mips;
 
 import java.io.File;
-import java.io.PrintWriter;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Simulator {
     
@@ -13,7 +10,7 @@ public class Simulator {
     private Parser parser;
     private String instructionRegister;
 
-    
+    private String str=" ";
     public Simulator (File inputFile) {
         processor = Processor.getInstance();
         memory    = Memory.getInstance();
@@ -22,51 +19,44 @@ public class Simulator {
 
         instructionRegister = "";
     }
-   
-
-    public void print(String[] instruction) {
-        System.out.println();
-
-        System.out.println(instruction[1]);
-        System.out.println(instruction[0]);
-        System.out.println();
-
-        System.out.println(register);
-        System.out.println();
-
-        System.out.println("------------------------------------------------------------------------------------");
-
-        System.out.println();
-        
-        
-    }
     
-    public static void display(Register r,Parser p) {
-    	GUI gui= new GUI(r.registers,p.getData(),32,1024);
-        gui.display(r.registers,p.getData(),32,1024);
+    public static void display(Register r,Parser p,String str) {
+    	GUI gui= new GUI(r.registers,p.getData(),32,1024,str);
+        gui.display(r.registers,p.getData(),32,1024,str);
     }
 
-    public void startSimulation () {
-        
+    @SuppressWarnings("unused")
+	public void startSimulation () {
         String[] instruction;
+
+       
         int[] registerInstruction;
         int[] previousInstruction = null;
         
+        
+
+
         while ((instruction = parser.nextInstruction()) != null) {
            
             instructionRegister = memory.loadInstruction(instruction[0]);
+          
             registerInstruction = parser.decodeInstruction(instructionRegister);
+
             final String[] instructionTemp = instruction;
             final int[] registerInstructionTemp = registerInstruction;
 
+            
             if (registerInstruction[0] == 2) {
                
                 parser.jumpTo(processor.executeInstruction(registerInstruction, parser.datasegment));
+
+               
                 previousInstruction = null;
+
                 continue;
             }
 
-  
+            
                 int address = processor.executeInstruction(registerInstructionTemp, parser.datasegment);
                
                 if (address != -1) {
@@ -77,12 +67,12 @@ public class Simulator {
                     } 
                     
                 }
-
-               
-                print(instructionTemp);
+               str=str+ "\n"+instruction[1]+"\n"+instruction[0]+"\n"+register+"\n"+"-----------------------------------------------------------\n";
+                
+             //   display(register, parser, instruction,register);
   
     }
-         display(register, parser);
+         display(register, parser, str);
     }
     
     public static void exit(String message) {
