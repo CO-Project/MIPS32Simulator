@@ -1,5 +1,4 @@
 package mips;
-
 import java.io.File;
 import java.util.Scanner;
 import java.util.regex.*; 
@@ -15,7 +14,6 @@ public class Parser {
     public Parser(File file) {
         try {
             this.file = file;
-
             lastReadLine = 0;
             scanner = new Scanner(file);
         } catch (Exception e) {
@@ -70,7 +68,7 @@ public class Parser {
     private String[] findInstruction(String[] line) {
         try {
            
-            Scanner stdin = new Scanner(new File("C:/Users/ASUS/eclipse-workspace/mips/src/mips/instructions.csv"));
+            Scanner stdin = new Scanner(new File("C:/Users/Gowthami/Desktop/Computer Organization/CO_Project/instructions.csv"));
 
             while (stdin.hasNextLine()) {
                 String[] instruction = stdin.nextLine().split(",");
@@ -97,7 +95,7 @@ public class Parser {
 
         switch (instructionFormat[1]) {
             case "R":
-               
+                
                 instruction = new String[6];
 
                 instruction[0] = toBitString(opCode, 6);
@@ -216,7 +214,73 @@ public class Parser {
     }
     
     public String[] getData(){
-        return datasegment.data;
+        return datasegment.data; 
+    }
+    
+    public boolean disableCountStalls(int[] registerInstruction, int[] previousInstruction) {
+        // Check if One of the instructions is a Jump
+        if (registerInstruction[0] == 2 || previousInstruction[0] == 2)
+            return false;
+
+        // Compare All Registers and make sure
+        // To return true if there's any dependencies
+        // And check if instruction is R format or I format
+        // Note that R Format has 3 Registers, rs, rt, rd in format [opcode, rs, rt, rd, shift, func]
+        // Note that I Format has 2 Regisers, rs, rd in format [opcode, rs, rd, address]
+        if(registerInstruction[0] == 0 && previousInstruction[0] == 0){
+            if(registerInstruction[1] == previousInstruction[3] || registerInstruction[2] == previousInstruction[3]){
+                return true;
+            }
+        }else if(registerInstruction[0] == 0){
+            if(previousInstruction[0] == 8 || previousInstruction[0] == 9){
+                if(registerInstruction[1] == previousInstruction[2] || registerInstruction[2] == previousInstruction[2]){
+                    return true;
+                }
+            }
+        }else if(previousInstruction[0] == 0){
+            if(registerInstruction[0] == 8 || registerInstruction[0] == 9){
+                if(registerInstruction[1] == previousInstruction[3]){
+                    return true;
+                }
+            }
+        }else if(registerInstruction[0] == 8 || registerInstruction[0] == 9){
+            if(previousInstruction[0] == 8 || previousInstruction[0] == 9){
+                if(registerInstruction[1] == previousInstruction[2]){
+                    return true;
+                }
+            }
+        }
+        
+        else if(previousInstruction[0] == 35 ){
+            if(registerInstruction[0] == 0){
+                if(previousInstruction[2] == registerInstruction[1] || previousInstruction[2] == registerInstruction[2]){
+                return true;
+                }
+            }else if(registerInstruction[0] == 8 || registerInstruction[0] == 9 || registerInstruction[0] == 43){
+                if(registerInstruction[1] == previousInstruction[2]){
+                    return true;
+                }
+            }
+            
+        }
+
+        return false;
+    }
+    
+    public boolean enableCountStalls(int[] registerInstruction, int[] previousInstruction){
+        if(previousInstruction[0] == 35 ){
+            if(registerInstruction[0] == 0){
+                if(previousInstruction[2] == registerInstruction[1] || previousInstruction[2] == registerInstruction[2]){
+                return true;
+                }
+            }else if(registerInstruction[0] == 8 || registerInstruction[0] == 9 || registerInstruction[0] == 43){
+                if(registerInstruction[1] == previousInstruction[2]){
+                    return true;
+                }
+            }
+            
+        }
+        return false;
     }
    
 }
