@@ -2,11 +2,23 @@ package mips;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
-public class GUI {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+public class GUI
+{
 
 	private JFrame frame;
 	private JTable table;
-	public void display(String R[],String Mem[],int n,int m,String str) 
+	private JRadioButton enabled;
+	private JRadioButton Disable;
+	private JLabel lblNewLabel;
+	private JEditorPane dtrpnStallinstructions;
+	private JScrollPane scrollPane;
+	private JTextField txtInstrlabel;
+	private JTextField txtClockcycleslabel;
+	private JTextField txtStallslabel;
+	private JTextField txtIpclabel;
+	public void display(String R[],String Mem[],int n,int m,String str,int instr,int stallsEnabled,int stallsDisabled, int clocksEnabled,int clocksDisabled,String stallInsEnabled, String stallInsDisabled) 
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
@@ -14,7 +26,7 @@ public class GUI {
 			{
 				try 
 				{
-					GUI window = new GUI(R,Mem,32,1024,str);
+					GUI window = new GUI(R,Mem,32,1024,str,instr,stallsEnabled,stallsDisabled, clocksEnabled,clocksDisabled,stallInsEnabled, stallInsDisabled);
 					window.frame.setVisible(true);
 				} 
 				catch (Exception e) 
@@ -24,11 +36,12 @@ public class GUI {
 			}
 		});
 	}
-	public GUI(String R[],String Mem[],int n,int m,String str) 
+	public GUI(String R[],String Mem[],int n,int m,String str,int instr,int stallsEnabled,int stallsDisabled, int clocksEnabled,int clocksDisabled,String stallInsEnabled, String stallInsDisabled) 
 	{
-		initialize(R,Mem,n,m,str);
+		initialize(R,Mem,32,1024,str,instr,stallsEnabled,stallsDisabled, clocksEnabled,clocksDisabled,stallInsEnabled, stallInsDisabled);
 	}
-    private void initialize(String R[],String Mem[],int n,int m,String str) {
+    private void initialize(String R[],String Mem[],int n,int m,String str,int instr,int stallsEnabled,int stallsDisabled, int clocksEnabled,int clocksDisabled,String stallInsEnabled, String stallInsDisabled) 
+    {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBackground(Color.BLACK);
@@ -64,7 +77,7 @@ public class GUI {
 		scrollPane_1.setBounds(10, 5, 1409, 891);
 		panel_5.add(scrollPane_1);
 		String DataSegmentstr=" ";
-		for(int j=0;j<1024;j++)
+		for(int j=0;j<m;j++)
 		{
 			DataSegmentstr=DataSegmentstr+"Address("+j+")"+"   =   "+Mem[j]+"\n";
 		}
@@ -90,6 +103,127 @@ public class GUI {
 		dtrpnTextJeditorPane.setForeground(Color.WHITE);
 		dtrpnTextJeditorPane.setBackground(Color.DARK_GRAY);
 		scrollPane_2.setViewportView(dtrpnTextJeditorPane);
+		
+		JPanel panelinfo = new JPanel();
+		panelinfo.setBackground(Color.DARK_GRAY);
+		panelinfo.setForeground(Color.WHITE);
+		tabbedPane_1.addTab("Info", null, panelinfo, null);
+		panelinfo.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(981, 92, 363, 804);
+		panelinfo.add(scrollPane);
+		
+		dtrpnStallinstructions = new JEditorPane();
+		dtrpnStallinstructions.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		dtrpnStallinstructions.setText(null);
+		dtrpnStallinstructions.setForeground(Color.WHITE);
+		dtrpnStallinstructions.setBackground(Color.DARK_GRAY);
+		scrollPane.setViewportView(dtrpnStallinstructions);
+		
+		enabled = new JRadioButton("Enable");
+		enabled.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(enabled.isSelected())
+				{
+					Disable.setSelected(false);
+                   txtInstrlabel.setText(Integer.toString(instr));
+				   txtClockcycleslabel.setText(Integer.toString(clocksEnabled));
+				   txtStallslabel.setText(Integer.toString(stallsEnabled));
+					double ipcEnabled = (double)instr/(double)clocksEnabled;
+					txtIpclabel.setText(Double.toString(ipcEnabled));
+			        dtrpnStallinstructions.setText(stallInsEnabled);
+				}
+			}
+		});
+		enabled.setFont(new Font("Tahoma", Font.BOLD, 12));
+		enabled.setBounds(75, 87, 109, 23);
+		panelinfo.add(enabled);
+		
+		Disable = new JRadioButton("Disable");
+		Disable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(Disable.isSelected())
+				{
+					enabled.setSelected(false);
+					 txtInstrlabel.setText(Integer.toString(instr));
+					  txtClockcycleslabel.setText(Integer.toString(clocksDisabled));
+					 txtStallslabel.setText(Integer.toString(stallsDisabled));
+					double ipcDisabled = (double)instr/(double)clocksDisabled;
+					txtIpclabel.setText(Double.toString(ipcDisabled));
+					dtrpnStallinstructions.setText(stallInsDisabled);
+				}
+			}
+		});
+		Disable.setFont(new Font("Tahoma", Font.BOLD, 12));
+		Disable.setBounds(75, 129, 109, 23);
+		panelinfo.add(Disable);
+		
+		lblNewLabel = new JLabel("Data Forwarding");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(75, 38, 142, 30);
+		panelinfo.add(lblNewLabel);
+		
+		JLabel lblStallInstructions = new JLabel("Stall Instructions :");
+		lblStallInstructions.setForeground(Color.WHITE);
+		lblStallInstructions.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblStallInstructions.setBounds(981, 50, 155, 30);
+		panelinfo.add(lblStallInstructions);
+		
+		JLabel lblNumberOfInstructions = new JLabel(" Instructions     :");
+		lblNumberOfInstructions.setForeground(Color.WHITE);
+		lblNumberOfInstructions.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumberOfInstructions.setBounds(101, 291, 142, 30);
+		panelinfo.add(lblNumberOfInstructions);
+		
+		JLabel lblNumberOfClock = new JLabel("Clock Cycles     :");
+		lblNumberOfClock.setForeground(Color.WHITE);
+		lblNumberOfClock.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumberOfClock.setBounds(101, 348, 142, 30);
+		panelinfo.add(lblNumberOfClock);
+		
+		JLabel lblStalls = new JLabel("Stalls                  :");
+		lblStalls.setForeground(Color.WHITE);
+		lblStalls.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblStalls.setBounds(101, 400, 142, 30);
+		panelinfo.add(lblStalls);
+		
+		JLabel lblIpc = new JLabel("IPC                      :");
+		lblIpc.setForeground(Color.WHITE);
+		lblIpc.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblIpc.setBounds(101, 450, 142, 30);
+		panelinfo.add(lblIpc);
+		
+		txtInstrlabel = new JTextField();
+		txtInstrlabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtInstrlabel.setText(null);
+		txtInstrlabel.setBounds(274, 298, 67, 20);
+		panelinfo.add(txtInstrlabel);
+		txtInstrlabel.setColumns(10);
+		
+		txtClockcycleslabel = new JTextField();
+		txtClockcycleslabel.setText(null);
+		txtClockcycleslabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtClockcycleslabel.setColumns(10);
+		txtClockcycleslabel.setBounds(274, 354, 67, 20);
+		panelinfo.add(txtClockcycleslabel);
+		
+		txtStallslabel = new JTextField();
+		txtStallslabel.setText(null);
+		txtStallslabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtStallslabel.setColumns(10);
+		txtStallslabel.setBounds(274, 407, 67, 20);
+		panelinfo.add(txtStallslabel);
+		
+		txtIpclabel = new JTextField();
+		txtIpclabel.setText(null);
+		txtIpclabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtIpclabel.setColumns(10);
+		txtIpclabel.setBounds(274, 456, 150, 20);
+		panelinfo.add(txtIpclabel);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
