@@ -21,7 +21,7 @@ Our simulator can run the following instructions:
 13. j 
 
 #### Note :
-The branch instructions `bne`, `beq` and the `jump` instruction(j) jump to an instruction number rather than a label.
+The branch instructions `bne`, `beq` and the `jump` instruction(j), jump to an instruction number rather than a label.
 
 ## Classes implemented in the Java program :
 There are `8` Java classes in our program. The class GuiSimulator is the main class.
