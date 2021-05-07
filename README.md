@@ -1,6 +1,6 @@
 # MIPS32 Simulator
 ## How it works?
-Our MIPS32 Simulator when run, displays a graphical user interface to upload an assembly file present anywhere in your computer and executes it. It displays the values stored in the registers and in the data segment after the execution of the file on a GUI. Also it displays the values of the registers after executing each step on the console.
+Our MIPS32 Simulator when run, displays a graphical user interface to upload an assembly file present anywhere in your computer. It asks the user to enter some values like sizes of level 1 and level 2 caches, block sizes etc. Based on the entered values, it executes the assembly instructions and displays a GUI. In the GUI, it shows the values stored in the registers in the Registers section and the values stored in the data segment in the Data Segment Section. In the info section, it displays each instruction in the input file, its equivalent 32 bit binary form and the values of all the registers after executing that particular instruction. In the info section, we can choose either to enable or disable data forwarding and see the total number of instructions executed, total number of clock cycles, total number of stalls, number of level 1 cache misses, number of level 2 cache misses, level cache miss rate, level 2 cache miss rate and the instructions per clock cycle(IPC) for both data forwarding enabled and disabled.
 
 The file bubblesort.asm is an assembly file which performs bubblesort on the given data and it is written based on our architecture.
 
@@ -35,11 +35,11 @@ The GuiSimulator class creates an object of the GUI class and invokes the functi
 ### Register Class :
 The Register class deals with all the registers. It changes the values of the registers and reads them. It also returns the number of the register depending on the name used, such as $s7.
 
-### DataSegment Class :
-The DataSegment class deals with the data to be manipulated. The data in the DataSement can be loaded to the registers and the data in the registers can be stored in the DataSegment.
-
 ### Memory Class :
-The Memory class stores the input file in a txt file and accesses it directly from this file. There will be a file reader and a file writer in this class; the file reader will save the last read line that way, if we need to continue reading, we don't have to read again from the start, but we'll continue from where we last left
+The Memory class plays the role of RAM in a computer. The data in the Memory can be loaded to the registers and the data in the registers can be stored in the Memory.
+
+### FileReader Class :
+The FileReader class stores the input file in a txt file and accesses it directly from this file. There will be a file reader and a file writer in this class; the file reader will save the last read line that way, if we need to continue reading, we don't have to read again from the start, but we'll continue from where we last left
 
 ### Parser Class :
 The Parser class takes the input file and decodes the instructions line by line.
@@ -49,3 +49,6 @@ The Processor class takes the decoded instructions and executes them line by lin
 
 ### Simulator Class :
 The Simulator class creates objects of Register, DataSegment, Memory, Pareser and Processor classes. It invokes the functions on these objects and executes the program.
+
+### Cache Class:
+The Cache class is used to check if the required data is present in it before going to the Memory. If the required data is present in the Cache object, we can access it from it without going to Memory. If it is not present in it, then we fetch the data from the Memory and store it in the Cache object. Our simulator supports two levels of caches and it implements the Least Recently Used(LRU) cache replacement policy.
