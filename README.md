@@ -24,7 +24,7 @@ Our simulator can run the following instructions:
 The branch instructions `bne`, `beq` and the `jump` instruction(j), jump to an instruction number rather than a label.
 
 ## Classes implemented in the Java program :
-There are `8` Java classes in our program. The class GuiSimulator is the main class.
+There are `9` Java classes in our program. The class GuiSimulator is the main class.
 
 ### GUI Class :
 The GUI class holds the code to create a graphical user interface to upload a file and display the registers and the data segment after the execution of the program.
