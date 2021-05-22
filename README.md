@@ -41,28 +41,28 @@ There are `9` Java classes in our program. The class GuiSimulator is the main cl
 > The GUI class holds the code to create a graphical user interface to upload a file and display the registers and the data segment after the execution of the program.
 
 ### GuiSimulator Class :
-The GuiSimulator class creates an object of the GUI class and invokes the functions on this object to display the graphical user interface. 
+> The GuiSimulator class creates an object of the GUI class and invokes the functions on this object to display the graphical user interface. 
 
 ### Register Class :
-The Register class deals with all the registers. It changes the values of the registers and reads them. It also returns the number of the register depending on the name used, such as $s7.
+> The Register class deals with all the registers. It changes the values of the registers and reads them. It also returns the number of the register depending on the name used, such as $s7.
 
 ### Memory Class :
-The Memory class plays the role of RAM in a computer. The data in the Memory can be loaded to the registers and the data in the registers can be stored in the Memory.
+> The Memory class plays the role of RAM in a computer. The data in the Memory can be loaded to the registers and the data in the registers can be stored in the Memory.
 
 ### FileReader Class :
-The FileReader class stores the input file in a txt file and accesses it directly from this file. There will be a file reader and a file writer in this class; the file reader will save the last read line that way, if we need to continue reading, we don't have to read again from the start, but we'll continue from where we last left
+> The FileReader class stores the input file in a txt file and accesses it directly from this file. There will be a file reader and a file writer in this class; the file reader will save the last read line that way, if we need to continue reading, we don't have to read again from the start, but we'll continue from where we last left
 
 ### Parser Class :
-The Parser class takes the input file and decodes the instructions line by line.
+> The Parser class takes the input file and decodes the instructions line by line.
 
 ### Processor Class :
-The Processor class takes the decoded instructions and executes them line by line.
+> The Processor class takes the decoded instructions and executes them line by line.
 
 ### Simulator Class :
-The Simulator class creates objects of Register, DataSegment, Memory, Pareser and Processor classes. It invokes the functions on these objects and executes the program.
+> The Simulator class creates objects of Register, DataSegment, Memory, Pareser and Processor classes. It invokes the functions on these objects and executes the program.
 
 ### Cache Class:
-The Cache class is used to check if the required data is present in it before going to the Memory. If the required data is present in the Cache object, we can access the data from it directly without going to the Memory. If the data is not present in it, then we fetch the data from the Memory and store it in the Cache object. Our simulator supports two levels of caches and it implements the Least Recently Used(LRU) cache replacement policy.
+> The Cache class is used to check if the required data is present in it before going to the Memory. If the required data is present in the Cache object, we can access the data from it directly without going to the Memory. If the data is not present in it, then we fetch the data from the Memory and store it in the Cache object. Our simulator supports two levels of caches and it implements the Least Recently Used(LRU) cache replacement policy.
 
 ## About Cache :
 * we have two levels for cache and has replacement policy `LRU`
