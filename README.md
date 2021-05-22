@@ -6,6 +6,13 @@ CS19B011 -Sahithi Rani
 Our MIPS32 Simulator when run, displays a graphical user interface to upload an assembly file present anywhere in your computer. It asks you to enter some values like sizes of level 1 and level 2 caches, block sizes etc. Based on the entered values, it executes the assembly instructions and displays a GUI. In the GUI, it shows the values stored in the registers in the Registers section and the values stored in the data segment in the Data Segment Section. In the Text section, it displays each instruction in the input file, its equivalent 32 bit binary form and the values of all the registers after executing that particular instruction. In the Info section, you can choose either to enable or disable data forwarding and see the total number of instructions executed, total number of clock cycles, total number of stalls, number of level 1 cache misses, number of level 2 cache misses, level 1 cache miss rate, level 2 cache miss rate and the instructions per clock cycle (IPC) for both data forwarding enabled and disabled.
 
 The file bubblesort.asm is an assembly file which performs bubblesort on the given data and it is written based on our architecture.
+## Screenshots
+<p>
+    <img src="assets/Text.png" height="600" width="1920">
+    <img src="assets/Data Segment.png" height="600" width="1920">
+    <img src="assets/Info_enable.png" height="600" width="1920">
+    <img src="assets/Info_disable.png" height="600" width="1920">
+</p>
 
 ## Instructions Implemented :
 Our simulator can run the following instructions:
