@@ -38,7 +38,7 @@ The branch instructions `bne`, `beq` and the `jump` instruction(j), jump to an i
 There are `9` Java classes in our program. The class GuiSimulator is the main class.
 
 ### GUI Class :
-The GUI class holds the code to create a graphical user interface to upload a file and display the registers and the data segment after the execution of the program.
+> The GUI class holds the code to create a graphical user interface to upload a file and display the registers and the data segment after the execution of the program.
 
 ### GuiSimulator Class :
 The GuiSimulator class creates an object of the GUI class and invokes the functions on this object to display the graphical user interface. 
