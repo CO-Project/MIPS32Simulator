@@ -9,6 +9,7 @@ The file bubblesort.asm is an assembly file which performs bubblesort on the giv
 
 ## Instructions Implemented :
 Our simulator can run the following instructions:
+```
 * add
 * sub
 * mul
@@ -22,7 +23,7 @@ Our simulator can run the following instructions:
 * lw
 * sw
 * j 
-
+```
 #### Note :
 The branch instructions `bne`, `beq` and the `jump` instruction(j), jump to an instruction number rather than a label.
 
