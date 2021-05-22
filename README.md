@@ -8,10 +8,10 @@ Our MIPS32 Simulator when run, displays a graphical user interface to upload an 
 The file bubblesort.asm is an assembly file which performs bubblesort on the given data and it is written based on our architecture.
 ## Screenshots
 <p>
-    <img src="assets/Text.png" height="500" width="1820">
-    <img src="assets/Data Segment.png" height="500" width="1820">
-    <img src="assets/Info_enable.png" height="500" width="1820">
-    <img src="assets/Info_disable.png" height="500" width="1820">
+    <img src="assets/Text.png" height="500" width="1820"><br>
+    <img src="assets/Data Segment.png" height="500" width="1820"><br>
+    <img src="assets/Info_enable.png" height="500" width="1820"><br>
+    <img src="assets/Info_disable.png" height="500" width="1820"><br>
 </p>
 
 ## Instructions Implemented :
