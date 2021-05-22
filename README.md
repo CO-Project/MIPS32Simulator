@@ -63,3 +63,9 @@ The Simulator class creates objects of Register, DataSegment, Memory, Pareser an
 
 ### Cache Class:
 The Cache class is used to check if the required data is present in it before going to the Memory. If the required data is present in the Cache object, we can access the data from it directly without going to the Memory. If the data is not present in it, then we fetch the data from the Memory and store it in the Cache object. Our simulator supports two levels of caches and it implements the Least Recently Used(LRU) cache replacement policy.
+
+###About Cache
+* we have two levels for cache and has replacement policy `LRU`
+* policy used is `Non Inclusive` and `Write Back`
+###Branch Predictor
+* Not taken
