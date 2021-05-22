@@ -9,19 +9,19 @@ The file bubblesort.asm is an assembly file which performs bubblesort on the giv
 
 ## Instructions Implemented :
 Our simulator can run the following instructions:
-1. add
-2. sub
-3. mul
-4. slt
-5. and
-6. or
-7. addi
-8. subi
-9. bne
-10. beq
-11. lw
-12. sw
-13. j 
+* add
+* sub
+* mul
+* slt
+* and
+* or
+* addi
+* subi
+* bne
+* beq
+* lw
+* sw
+* j 
 
 #### Note :
 The branch instructions `bne`, `beq` and the `jump` instruction(j), jump to an instruction number rather than a label.
