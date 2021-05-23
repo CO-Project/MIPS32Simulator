@@ -72,7 +72,7 @@ There are `9` Java classes in our program. The class GuiSimulator is the main cl
 * The configuration of the cache like the cache size, block size, associativity, hit time and also the memory access time can be set by the user before starting the simulator.     The time taken to execute the memory stage is dependent on the configuration set by the user
 
 ## Stalls :
-> * Coming to the stall cycles, we have implemented our simulator such that it detects all the data hazards and control hazards; and the user has an option to either enable or   disable data forwarding.
+ * Coming to the stall cycles, we have implemented our simulator such that it detects all the data hazards and control hazards; and the user has an option to either enable or   disable data forwarding.
   *  We have identified all the possible cases where stalls may arise for both data forwarding enabled and disabled and we have implemented our simulator such that it detects   the hazards and updates the stall cycles accordingly.
   *   The stall cycles for the memory stage are also taken care of.
   *    According to the cache configuration and memory access time set by the user, the stall cycles will be updated for the memory stage as well.
