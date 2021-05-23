@@ -9,9 +9,9 @@ The file bubblesort.asm is an assembly file which performs bubblesort on the giv
 ## Screenshots
 <p>
     <img src="assets/Text.png" height="500" width="1820"><br>
-    <img src="assets/Data Segment.png" height="500" width="1820"><br>
-    <img src="assets/Info_enable.png" height="500" width="1820"><br>
-    <img src="assets/Info_disable.png" height="500" width="1820"><br>
+    <img src="assets/Data Segment.png" height="400" width="1520"><br>
+    <img src="assets/Info_enable.png" height="400" width="1520"><br>
+    <img src="assets/Info_disable.png" height="400" width="1520"><br>
 </p>
 
 ## Instructions Implemented :
